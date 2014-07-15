@@ -7,3 +7,8 @@ This is a .NET wrapper library, written in C#, used to comnunicate with the Open
 Documentation
 ================
 Not available yet.
+
+
+License
+================
+This project is released under the MIT License, see [License](LICENSE.md)
