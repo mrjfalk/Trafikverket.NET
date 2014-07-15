@@ -11,4 +11,4 @@ Not available yet.
 
 License
 ================
-This project is released under the MIT License, see [License](LICENSE)
+This project is released under the MIT License, see [License](LICENSE.md)
