@@ -34,21 +34,11 @@ namespace Trafikverket.Net
         }
 
         /// <summary>
-        /// Send an API request with a single query.
-        /// </summary>
-        /// <param name="query">Query to include in request</param>
-        /// <returns>Response from the API</returns>
-        public async Task<TrafikverketApiResponse> SendApiRequestAsync(QueryModel query)
-        {
-            return await SendApiRequestAsync(new List<QueryModel>() { query });
-        }
-
-        /// <summary>
-        /// Send an API request with a set of queries. Atleast one query must be included.
+        /// Send an API request with a set of queries. At least one query must be included.
         /// </summary>
         /// <param name="queries">Queries to include in request. At least one.</param>
         /// <returns>Response from the API</returns>
-        public async Task<TrafikverketApiResponse> SendApiRequestAsync(IEnumerable<QueryModel> queries)
+        public async Task<TrafikverketApiResponse> SendApiRequestAsync(params QueryModel[] queries)
         {
             // Create and serialize the request
             TrafikverketApiRequest request = new TrafikverketApiRequest(authenticationKey, queries);
@@ -93,12 +83,16 @@ namespace Trafikverket.Net
             {
                 // Create a response with a custom error
                 TrafikverketApiResponse response = new TrafikverketApiResponse() { Success = false };
-                response.Result = new ResultModel();
-                response.Result.Error = new ErrorModel()
-                {
-                    Source = "api-wrapper",
-                    Message = "Failed to download the data"
+                
+                ResultModel errorResult = new ResultModel() {
+                    Error = new ErrorModel()
+                    {
+                        Source = "api-wrapper",
+                        Message = "Failed to download the data"
+                    }
                 };
+
+                response.Results.Add(errorResult);
 
                 return response;
             }

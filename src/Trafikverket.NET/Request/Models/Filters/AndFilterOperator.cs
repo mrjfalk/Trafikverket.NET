@@ -13,5 +13,17 @@ namespace Trafikverket.Net
         {
 
         }
+
+        public AndFilterOperator(IEnumerable<FiltersBase> childFilters)
+            : base(childFilters)
+        {
+
+        }
+
+        public AndFilterOperator(params FiltersBase[] childFilters)
+            : base(childFilters)
+        {
+
+        }
     }
 }

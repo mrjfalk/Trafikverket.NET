@@ -30,36 +30,19 @@ namespace Trafikverket.Net
         }
 
         /// <summary>
-        /// Constructor. Authentication key and one query is mandatory
+        /// Constructor. At least one query is mandatory
         /// </summary>
         /// <param name="authenticationKey">Authentication key</param>
-        /// <param name="query">Query to include in the request</param>
-        public TrafikverketApiRequest(string authenticationKey, QueryModel query)
-        {
-            Login = new LoginModel(authenticationKey);
-            Queries = new List<QueryModel>();
-            Queries.Add(query);
-        }
-
-        /// <summary>
-        /// Constructor. Authentication key and atleast one query is mandatory
-        /// </summary>
-        /// <param name="authenticationKey">Authentication key</param>
-        /// <param name="queries">Queries to include in the request</param>
-        public TrafikverketApiRequest(string authenticationKey, IEnumerable<QueryModel> queries)
+        /// <param name="query">Queries to include in the request, must be atleast one</param>
+        public TrafikverketApiRequest(string authenticationKey, params QueryModel[] queries)
         {
             Login = new LoginModel(authenticationKey);
             Queries = new List<QueryModel>();
 
-            if (queries != null && queries.Count() >= 1)
-            {
-                foreach (QueryModel query in queries)
-                    Queries.Add(query);
-            }
+            if(queries.Count() > 0)
+                Queries.AddRange(queries);
             else
-            {
                 throw new ArgumentException("At least one query must be included", "queries");
-            }
         }
     }
 }

@@ -27,11 +27,23 @@ namespace Trafikverket.Net
         public List<FiltersBase> ChildFilters { get; set; }
 
         /// <summary>
-        /// Constructor. Name and value are both required.
+        /// Constructor.
         /// </summary>
         public BaseOperator()
         {
             ChildFilters = new List<FiltersBase>();
+        }
+
+        /// <summary>
+        /// Constructor which takes a collection of child filters
+        /// </summary>
+        /// <param name="childFilters"></param>
+        public BaseOperator(IEnumerable<FiltersBase> childFilters)
+        {
+            ChildFilters = new List<FiltersBase>();
+
+            if(childFilters != null)
+                ChildFilters.AddRange(childFilters);
         }
     }
 }
