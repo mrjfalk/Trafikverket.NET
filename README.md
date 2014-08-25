@@ -16,7 +16,7 @@ Here are some examples of how to use this library.
 ```cs
 using Trafikverket.Net;
 
-TrafikverketApi api = new Trafikverket.Net.TrafikverketApi("e790cc26b478479f9258cd8b1a6d6705");
+TrafikverketApi api = new Trafikverket.Net.TrafikverketApi("YOUR-API-KEY");
 TrafikverketApiResponse response = await api.SendApiRequestAsync(new QueryModel("TrainStation"));
 foreach (TrainStation station in response.Results[0].TrainStations)
 {
