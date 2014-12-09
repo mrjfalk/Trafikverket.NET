@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace Trafikverket.Net
+namespace Trafikverket.NET
 {
     /// <summary>
     /// Abstract base filter class
@@ -22,7 +22,7 @@ namespace Trafikverket.Net
         /// <summary>
         /// Default constructor
         /// </summary>
-        protected BaseFilter()
+        internal BaseFilter()
         {
             Name = "";
             Value = "";

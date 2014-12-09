@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace Trafikverket.Net
+namespace Trafikverket.NET
 {
     /// <summary>
     /// Represents info element in response.

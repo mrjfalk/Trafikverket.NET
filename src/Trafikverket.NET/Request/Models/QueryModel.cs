@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Trafikverket.Net
+namespace Trafikverket.NET
 {
     /// <summary>
     /// Model for a query
     /// </summary>
+    /// <typeparam name="ObjectType">Type of response object</typeparam>
     public class QueryModel
     {
         /// <summary>
-        /// Get or set type of object to return
+        /// Get name of object to return
         /// </summary>
         [XmlAttribute("objecttype")]
-        public string ObjectType { get; set; }
+        public string ObjectTypeName { get; set; }
 
         /// <summary>
         /// Get or set an id which is also returned in the response (Optional)
@@ -34,7 +35,7 @@ namespace Trafikverket.Net
         [XmlAttribute("includedeletedobjects")]
         public string IncludeDeletedObjects_String
         {
-            get { return IncludeDeletedObjects.HasValue ? IncludeDeletedObjects.Value.ToString() : null; }
+            get { return IncludeDeletedObjects.HasValue ? IncludeDeletedObjects.Value.ToString().ToLower() : null; }
             set { IncludeDeletedObjects = !String.IsNullOrEmpty(value) ? XmlConvert.ToBoolean(value) : (bool?)null; }
         }
 
@@ -88,7 +89,7 @@ namespace Trafikverket.Net
         [XmlAttribute("lastmodified")]
         public string IncludeLastModified_String
         {
-            get { return IncludeLastModified.HasValue ? IncludeLastModified.Value.ToString() : null; }
+            get { return IncludeLastModified.HasValue ? IncludeLastModified.Value.ToString().ToLower() : null; }
             set { IncludeLastModified = !String.IsNullOrEmpty(value) ? XmlConvert.ToBoolean(value) : (bool?)null; }
         }
 
@@ -123,20 +124,18 @@ namespace Trafikverket.Net
         [XmlElement("EXCLUDE")]
         public List<string> ExcludeFields { get; set; }
 
-        private QueryModel()
+        internal QueryModel()
         {
             Filters = new List<FiltersBase>();
-            ObjectType = "";
         }
 
-        /// <summary>
-        /// Constructor. Object type is required
-        /// </summary>
-        /// <param name="objectType">Object type</param>
-        public QueryModel(string objectType)
+        public QueryModel(string objectType, bool includeDeletedObjects = false, bool includeLastModified = false)
+            : this()
         {
             Filters = new List<FiltersBase>();
-            ObjectType = objectType;
+            ObjectTypeName = objectType;
+            IncludeDeletedObjects = includeDeletedObjects;
+            IncludeLastModified = includeLastModified;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace Trafikverket.Net
+namespace Trafikverket.NET
 {
     /// <summary>
     /// Not in filter
@@ -10,7 +10,7 @@ namespace Trafikverket.Net
         /// <summary>
         /// Default constructor
         /// </summary>
-        private NotInFilter()
+        internal NotInFilter()
             : base()
         {
 

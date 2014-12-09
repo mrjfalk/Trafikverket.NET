@@ -3,13 +3,21 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Trafikverket.Net
+namespace Trafikverket.NET
 {
     /// <summary>
     /// Representation of a train station element
     /// </summary>
     public class TrainStation
     {
+        /// <summary>
+        /// Get ObjectType as string
+        /// </summary>
+        public static string ObjectTypeName
+        {
+            get { return "TrainStation"; }
+        }
+
         /// <summary>
         /// Get or set if station is advertised in time table
         /// </summary>

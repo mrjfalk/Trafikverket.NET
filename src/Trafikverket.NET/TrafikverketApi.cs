@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using Trafikverket.Net;
 
-namespace Trafikverket.Net
+namespace Trafikverket.NET
 {
     /// <summary>
     /// Class for interacting with the API
@@ -122,31 +122,31 @@ namespace Trafikverket.Net
         /// <returns>XML of the request as a string</returns>
         private string SerializeRequest(TrafikverketApiRequest request)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(TrafikverketApiRequest));
+			XmlSerializer xmlSerializer = new XmlSerializer(typeof(TrafikverketApiRequest));
 
-            // Clear namespaces
-            XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
-            namespaces.Add("", "");
+			// Clear namespaces
+			XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
+			namespaces.Add("", "");
 
-            // Set serialization settings
-            XmlWriterSettings xmlSettings = new XmlWriterSettings()
-            {
-                Encoding = Encoding.UTF8,
-                OmitXmlDeclaration = true,
-                Indent = false
-            };
+			// Set serialization settings
+			XmlWriterSettings xmlSettings = new XmlWriterSettings()
+			{
+				Encoding = Encoding.UTF8,
+				OmitXmlDeclaration = true,
+				Indent = false
+			};
 
-            // Serialize the request object and return the string
-            using(StringWriter stringWriter = new StringWriter())
-            {
-                using(XmlWriter xmlWriter = XmlWriter.Create(stringWriter, xmlSettings))
-                {
-                    xmlSerializer.Serialize(xmlWriter, request, namespaces);
-                }
+			// Serialize the request object and return the string
+			using (StringWriter stringWriter = new StringWriter())
+			{
+				using (XmlWriter xmlWriter = XmlWriter.Create(stringWriter, xmlSettings))
+				{
+					xmlSerializer.Serialize(xmlWriter, request, namespaces);
+				}
 
-                string serializedData = stringWriter.ToString();
-                return serializedData;
-            }
+				string serializedData = stringWriter.ToString();
+				return serializedData;
+			}
         }
 
         /// <summary>

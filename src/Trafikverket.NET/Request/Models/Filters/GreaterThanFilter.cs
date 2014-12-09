@@ -1,6 +1,7 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
-namespace Trafikverket.Net
+namespace Trafikverket.NET
 {
     /// <summary>
     /// Greater than filter
@@ -10,7 +11,7 @@ namespace Trafikverket.Net
         /// <summary>
         /// Default constructor
         /// </summary>
-        private GreaterThanFilter() : base()
+        internal GreaterThanFilter() : base()
         {
 
         }
@@ -25,5 +26,16 @@ namespace Trafikverket.Net
         {
 
         }
+
+		/// <summary>
+		/// Constructor. Name and value are both required.
+		/// </summary>
+		/// <param name="name">Name of attribute</param>
+		/// <param name="value">DateTime value to compare with</param>
+		public GreaterThanFilter(string name, DateTime value)
+			: base(name, value.TrainApiDateTimeFormat())
+		{
+
+		}
     }
 }

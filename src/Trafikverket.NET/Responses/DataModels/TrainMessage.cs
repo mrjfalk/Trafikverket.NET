@@ -3,10 +3,21 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Trafikverket.Net
+namespace Trafikverket.NET
 {
+	/// <summary>
+	/// Train message, e.g. information about construction works etc.
+	/// </summary>
     public class TrainMessage
     {
+        /// <summary>
+        /// Get ObjectType as string
+        /// </summary>
+        public static string ObjectTypeName
+        {
+            get { return "TrainMessage"; }
+        }
+
         /// <summary>
         /// Get or set affected locations
         /// </summary>
@@ -110,11 +121,72 @@ namespace Trafikverket.Net
         /// <summary>
         /// Get or set string representation of Start
         /// </summary>
-        /// [XmlElement("StartDateTime")]
+        [XmlElement("StartDateTime")]
         public string _Start_String
         {
             get { return Start.HasValue ? Start.Value.ToString() : null; }
             set { Start = !String.IsNullOrEmpty(value) ? XmlConvert.ToDateTimeOffset(value) : (DateTimeOffset?)null; }
         }
+		
+		/// <summary>
+		/// Possible attributes for this type
+		/// </summary>
+		public static class Attributes
+		{
+			/// <summary>
+			/// Affected locations (string[]): Stations signatures
+			/// </summary>
+			public static string AffectedLocation { get { return "AffectedLocation"; } }
+			
+			/// <summary>
+			/// County number (integer[]): Länsnummer1Stockholms län2DEPRECATED Användes tidigare för Stockholms län3Uppsala län4Södermanlands län5Östergötlands län6Jönköpings län7Kronobergs län8Kalmar län9Gotlands län10Blekinge län12Skåne län13Hallands län14Västra Götalands län17Värmlands län18Örebro län19Västmanlands län20Dalarnas län21Gävleborgs län22Västernorrlands län23Jämtlands län24Västerbottens län25Norrbottens län
+			/// </summary>
+			public static string CountyNo { get { return "CountyNo"; } }
+
+			/// <summary>
+			/// If the data entry has been deleted (bool)
+			/// </summary>
+			public static string Deleted { get { return "Deleted"; } }
+
+			/// <summary>
+			/// Unique id for the event (int)
+			/// </summary>
+			public static string EventId { get { return "EventId"; } }
+
+			/// <summary>
+			/// Information text (string)
+			/// </summary>
+			public static string ExternalDescription { get { return "ExternalDescription"; } }
+
+			/// <summary>
+			/// Geometrical point in coordinate system SWEREF99TM
+			/// </summary>
+			public static string GeometrySWEREF99TM { get { return "Geometry.SWEREF99TM"; } }
+
+			/// <summary>
+			/// Geometrical point in coordinate system WGS84
+			/// </summary>
+			public static string GeometryWGS84 { get { return "Geometry.WGS84"; } }
+
+			/// <summary>
+			/// Last update date time for data entry (DateTime)
+			/// </summary>
+			public static string LastUpdateDateTime { get { return "LastUpdateDateTime"; } }
+
+			/// <summary>
+			/// Last time the data entry was modified (DateTime)
+			/// </summary>
+			public static string ModifiedTime { get { return "ModifiedTime"; } }
+
+			/// <summary>
+			/// The message eventual reason (string)
+			/// </summary>
+			public static string ReasonCodeText { get { return "ReasonCodeText"; } }
+
+			/// <summary>
+			/// The messages start time (DateTime)
+			/// </summary>
+			public static string StartDateTime { get { return "ReasonCodeText"; } }
+		}
     }
 }

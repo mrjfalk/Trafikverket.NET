@@ -6,7 +6,14 @@ This is a .NET wrapper library, written in C#, used to comnunicate with the Open
 
 Documentation
 ================
-Not available yet.
+No real documentation yet, although most of the public functions has IntelliSense documentation. Below are some simple examples.
+
+Get all train stations:
+
+```c#
+TrafikverketApi api = new TrafikverketApi("apiKey");
+TrafikverketApiResponse response = await api.SendApiRequestAsync(new QueryModel(TrainStation.ObjectTypeName));
+```
 
 
 License

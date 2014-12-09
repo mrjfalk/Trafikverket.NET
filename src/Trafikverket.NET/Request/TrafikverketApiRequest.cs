@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace Trafikverket.Net
+namespace Trafikverket.NET
 {
     /// <summary>
     /// Representation of a request to the API
@@ -33,7 +33,7 @@ namespace Trafikverket.Net
         /// Constructor. At least one query is mandatory
         /// </summary>
         /// <param name="authenticationKey">Authentication key</param>
-        /// <param name="query">Queries to include in the request, must be atleast one</param>
+		/// <param name="queries">Queries to include in the request, must be atleast one</param>
         public TrafikverketApiRequest(string authenticationKey, params QueryModel[] queries)
         {
             Login = new LoginModel(authenticationKey);

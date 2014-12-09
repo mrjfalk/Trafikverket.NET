@@ -1,7 +1,10 @@
 ﻿using System.Xml.Serialization;
 
-namespace Trafikverket.Net
+namespace Trafikverket.NET
 {
+	/// <summary>
+	/// Model for login data
+	/// </summary>
     public class LoginModel
     {
         [XmlAttribute("authenticationkey")]

@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace Trafikverket.Net
+namespace Trafikverket.NET
 {
     /// <summary>
     /// Timetable information, represents a single train at a location
     /// </summary>
     public class TrainAnnouncement
     {
+        /// <summary>
+        /// Get ObjectType as string
+        /// </summary>
+        public static string ObjectTypeName
+        {
+            get { return "TrainAnnouncement"; }
+        }
+
         /// <summary>
         /// Get or set unique id for the activity
         /// </summary>
@@ -58,7 +66,7 @@ namespace Trafikverket.Net
         public bool Deleted { get; set; }
 
         /// <summary>
-        /// Get or set possible deviation
+        /// Get or set possible deviation texts, e.g. "Buss ersätter"
         /// </summary>
         [XmlElement("Deviation")]
         public List<string> Deviation { get; set; }
@@ -67,7 +75,7 @@ namespace Trafikverket.Net
         /// Get or set estimated time for arrival or departure
         /// </summary>
         [XmlElement("EstimatedTimeAtLocation")]
-        public DateTime EstimatedTimeAtLocation { get; set; }
+        public DateTime? EstimatedTimeAtLocation { get; set; }
 
         /// <summary>
         /// Get or set if the estimated time is preliminary
@@ -121,7 +129,7 @@ namespace Trafikverket.Net
         /// Get or set announced departure date
         /// </summary>
         [XmlElement("ScheduledDepartureDateTime")]
-        public DateTime ScheduledDeparture { get; set; }
+        public DateTime? ScheduledDeparture { get; set; }
 
         /// <summary>
         /// Get or set additional product information, e.g. "Bistro" etc.
